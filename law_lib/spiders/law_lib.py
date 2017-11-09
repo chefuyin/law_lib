@@ -15,9 +15,12 @@ class Myspider(scrapy.Spider):
     new_law_zy_index='http://www.law-lib.com/law/lawmlnew-zy.asp'
     new_law_df_index='http://www.law-lib.com/law/lawmlnew-df.asp'
     def start_requests(self):
+        #爬取最新中央法规、地方法规页面
         index_urls = [self.new_law_zy_index,self.new_law_df_index]
         for index_url in index_urls:
             yield Request(index_url,self.parse)
+
+        #按照中央部门爬取
         # index_url=self.base_url+self.department_index#从中央单位开始爬
         # req= requests.get(index_url)
         # req.encoding='gb2312'
